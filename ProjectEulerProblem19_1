@@ -1,0 +1,30 @@
+
+public class ProjectEulerProblem19_1{
+	
+	public static final int[] nonLeapMonthFirstDay = new int[]{1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
+	public static final int[] leapMonthFirstDay = new int[]{1, 32, 61, 92, 122, 153, 183, 214, 245, 275, 306, 336};
+	
+	public static void main(String...args){
+		long startTime = System.currentTimeMillis();
+		int modCounter = 6; //Sunday is 6th Day starting 1st Jan 1901
+		int countOfSunday = 0;
+		for(int i = 1901;i<=2000;i++){
+			boolean isLeapYear=i%4==0;
+			if(!isLeapYear){ //Calculating Sundays for Non Leap Year..
+				for(int x : nonLeapMonthFirstDay){
+					countOfSunday += x%7==modCounter?1:0;
+				}				
+			}
+			else{ //Calculating Sundays for Leap Year..
+				for(int x : leapMonthFirstDay){
+					countOfSunday += x%7==modCounter?1:0;
+				}
+			}
+			modCounter = modCounter==0?6:modCounter-1;
+		}
+		System.out.println("No. of Sundays: "+countOfSunday);
+		System.out.println("Total Time Taken: "+(System.currentTimeMillis()-startTime));
+	}
+}
+//No. of Sundays: 171
+//Total Time Taken: 0 millisecs(runs in nanosecs)
